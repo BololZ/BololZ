@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @BololZ
 - 👀 I’m interested in Linux & Terraform
-- 🌱 I’m currently learning Nuxt JS 3
+- 🌱 I’m currently learning Nuxt 3
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
 
