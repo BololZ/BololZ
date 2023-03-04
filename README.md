@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @BololZ
-- 👀 I’m interested in Linux & Terraform
-- 🌱 I’m currently learning Nuxt 3
+- 👀 I’m interested in Linux & Kubernetes
+- 🌱 I’m currently learning Go
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
 
