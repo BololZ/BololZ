@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @BololZ
 - 👀 I’m interested in Linux & Kubernetes
-- 🌱 I’m currently learning Go
+- 🌱 I’m currently learning NextJS and FastAPI
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
 
