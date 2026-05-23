@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref }}
 
       - name: Extract metadata for Docker
         id: meta
@@ -41,6 +43,8 @@ jobs:
       - name: Build and tag Docker image
         uses: docker/build-push-action@v7
         with:
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           context: ${{ inputs.context_path }}
           file: ${{ inputs.dockerfile_path }}
           tags: ${{ steps.meta.outputs.tags }}
