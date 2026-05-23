@@ -43,6 +43,7 @@ jobs:
       - name: Build and tag Docker image
         uses: docker/build-push-action@v7
         env:
+          GITHUB_USER: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           context: ${{ inputs.context_path }}
