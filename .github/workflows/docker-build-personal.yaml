@@ -34,7 +34,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
+        with:
+          ref: ${{ github.ref }}
+          
       - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v6
