@@ -7,10 +7,12 @@ on:
         description: 'Name of the Docker image'
         required: true
         type: string
+        default: ${{ github.repository }}
       dockerfile_path:
         description: 'Path to the Dockerfile'
         required: true
         type: string
+        default: '.'
       context_path:
         description: 'Path to the build context (default: .)'
         required: false
@@ -19,6 +21,8 @@ on:
 
 jobs:
   build:
+    env:
+      DOCKER_BUILDKIT: 1
     runs-on: self-hosted
     steps:
       - name: Checkout code
