@@ -18,6 +18,12 @@ on:
         required: false
         type: string
         default: '.'
+      GIT_AUTH_TOKEN:
+        description: 'token git auth'
+        required: false
+      GIT_AUTH_USER:
+        description: 'user git auth'
+        required: false
 
 jobs:
   build:
@@ -49,7 +55,10 @@ jobs:
           file: ${{ inputs.dockerfile_path }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          load: true  # Stores the image locally on the runner
+          load: true
+          secrets: |
+            GIT_AUTH_TOKEN=${{ inputs.GIT_AUTH_TOKEN }}
+            GIT_AUTH_USER=${{ inputs.GIT_AUTH_USER }}
 
       - name: List Docker images (verify)
         run: docker images | grep ${{ inputs.image_name }}
