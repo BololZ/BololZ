@@ -18,6 +18,14 @@ on:
         required: false
         type: string
         default: '.'
+      git_auth_user:
+        description: 'git username'
+        required: false
+        type: string
+      git_auth_token:
+        description: 'git token'
+        required: false
+        type: string
 
 jobs:
   build:
@@ -50,6 +58,9 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           load: true
+          secrets: |
+            "git_auth_user=${{ inputs.git_auth_user }}"
+            "git_auth_token=${{ inputs.git_auth_token }}"
 
       - name: List Docker images (verify)
         run: docker images | grep ${{ inputs.image_name }}
