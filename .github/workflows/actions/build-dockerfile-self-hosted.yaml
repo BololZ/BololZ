@@ -1,42 +1,37 @@
-name: Reusable Docker Build (Local)
+name: 'Reusable Docker Build (Local)'
+description: 'Build Dockerfile with private dependencies from GitHub repo'
 
-on:
-  workflow_call:
-    inputs:
-      image_name:
-        description: 'Name of the Docker image'
-        required: true
-        type: string
-        default: ${{ github.repository }}
-      dockerfile_path:
-        description: 'Path to the Dockerfile'
-        required: true
-        type: string
-        default: '.'
-      context_path:
-        description: 'Path to the build context (default: .)'
-        required: false
-        type: string
-        default: '.'
-    secrets:
-      git_auth_user:
-        description: 'git username'
-        required: false
-      git_auth_token:
-        description: 'git token'
-        required: false
+inputs:
+  image_name:
+    description: 'Name of the Docker image'
+    required: true
+    type: string
+    default: ${{ github.repository }}
+  dockerfile_path:
+    description: 'Path to the Dockerfile'
+    required: true
+    type: string
+    default: '.'
+  context_path:
+    description: 'Path to the build context (default: .)'
+    required: false
+    type: string
+    default: '.'
+secrets:
+  git_auth_user:
+    description: 'git username'    required: false
+  git_auth_token:
+    description: 'git token'
+    required: false
 
-jobs:
-  build:
-    env:
-      DOCKER_BUILDKIT: 1
-    runs-on: self-hosted
+runs:
+    using: "composite"
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
           ref: ${{ github.ref }}
-          
+
       - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v6
@@ -60,7 +55,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           load: true
           secrets: |
-            "git_auth_user=${{ secrets.git_auth_user }}"
             "git_auth_token=${{ secrets.git_auth_token }}"
 
       - name: List Docker images (verify)
