@@ -55,5 +55,5 @@ runs:
             "git_auth_token=${{ inputs.git_auth_token }}"
 
       - name: List Docker images (verify)
-        run: docker images | grep ${{ inputs.image_name }}
+        run: docker images ${{ inputs.image_name }}
         shell: bash
