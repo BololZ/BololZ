@@ -17,9 +17,6 @@ inputs:
     required: false
     type: string
     default: '.'
-secrets:
-  git_auth_user:
-    description: 'git username'    required: false
   git_auth_token:
     description: 'git token'
     required: false
@@ -55,7 +52,8 @@ runs:
           labels: ${{ steps.meta.outputs.labels }}
           load: true
           secrets: |
-            "git_auth_token=${{ secrets.git_auth_token }}"
+            "git_auth_token=${{ inputs.git_auth_token }}"
 
       - name: List Docker images (verify)
         run: docker images | grep ${{ inputs.image_name }}
+        shell: bash
